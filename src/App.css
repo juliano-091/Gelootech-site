@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+img {
+  max-width: 100%;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -77,6 +81,7 @@ nav button,
   font-weight: 800;
   cursor: pointer;
   box-shadow: 0 18px 38px rgba(37, 99, 235, 0.26);
+  white-space: nowrap;
 }
 
 .secondary {
@@ -102,8 +107,8 @@ nav button:hover,
   margin: 0 auto;
   padding: 70px 72px 80px;
   display: grid;
-  grid-template-columns: 500px minmax(760px, 1fr);
-  gap: 96px;
+  grid-template-columns: minmax(360px, 500px) minmax(0, 1fr);
+  gap: 72px;
   align-items: center;
 }
 
@@ -178,6 +183,7 @@ h1 strong {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  position: relative;
 }
 
 .dashboard {
@@ -188,6 +194,8 @@ h1 strong {
   background: #ffffff;
   box-shadow: 0 34px 90px rgba(15, 23, 42, 0.13);
   overflow: hidden;
+  position: relative;
+  z-index: 1;
 }
 
 .dashHeader {
@@ -247,7 +255,7 @@ aside p:first-child {
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
   margin-top: 28px;
 }
@@ -271,6 +279,7 @@ aside p:first-child {
   font-size: 25px;
   margin-top: 10px;
   color: #0f172a;
+  overflow-wrap: anywhere;
 }
 
 .cards small {
@@ -360,7 +369,7 @@ aside p:first-child {
 .resourceGrid {
   margin-top: 34px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 22px;
   text-align: left;
 }
@@ -482,9 +491,18 @@ aside p:first-child {
 /* RESPONSIVO */
 
 @media (max-width: 1250px) {
+  .header {
+    padding: 18px 40px;
+  }
+
+  nav {
+    gap: 24px;
+  }
+
   .hero {
     grid-template-columns: 1fr;
     gap: 50px;
+    padding: 58px 48px 74px;
   }
 
   .heroText {
@@ -504,31 +522,107 @@ aside p:first-child {
   }
 }
 
+@media (max-width: 900px) {
+  .header {
+    padding: 16px 28px;
+  }
+
+  nav {
+    gap: 18px;
+  }
+
+  nav button {
+    padding: 13px 18px;
+  }
+
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 760px) {
   .header {
-    padding: 14px 20px;
+    padding: 12px 16px;
+    gap: 12px;
   }
 
   .logoImage {
-    height: 64px;
+    height: 52px;
+    max-width: 142px;
+  }
+
+  nav {
+    margin-left: auto;
+    gap: 0;
   }
 
   nav a {
     display: none;
   }
 
+  nav button {
+    max-width: 156px;
+    padding: 11px 14px;
+    border-radius: 12px;
+    font-size: 12px;
+    line-height: 1.15;
+    white-space: normal;
+  }
+
   .hero {
-    grid-template-columns: 520px 850px;
-    gap: 40px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+    padding: 36px 18px 56px;
   }
 
   h1 {
-    font-size: 42px;
+    font-size: 36px;
+    letter-spacing: 0;
+  }
+
+  .badge {
+    font-size: 11px;
+    letter-spacing: 0;
+  }
+
+  .heroText p {
+    font-size: 16px;
+    line-height: 1.65;
   }
 
   .actions,
   .checks {
     flex-direction: column;
+  }
+
+  .actions {
+    gap: 12px;
+    margin-top: 26px;
+  }
+
+  .primary,
+  .secondary {
+    width: 100%;
+    padding: 14px 18px;
+  }
+
+  .checks {
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .heroRight::before {
+    display: none;
+  }
+
+  .dashboard {
+    border-radius: 20px;
+  }
+
+  .dashHeader {
+    padding: 16px 18px;
+    flex-direction: column;
+    gap: 4px;
   }
 
   .dashBody {
@@ -539,19 +633,157 @@ aside p:first-child {
     display: none;
   }
 
+  .dashContent {
+    padding: 22px 18px 20px;
+  }
+
+  .dashContent h3 {
+    font-size: 24px;
+  }
+
+  .dashContent>p {
+    font-size: 14px;
+  }
+
   .cards,
   .resourceGrid,
   .contactGrid {
     grid-template-columns: 1fr;
   }
 
+  .cards {
+    gap: 12px;
+    margin-top: 22px;
+  }
+
+  .cards div {
+    min-height: auto;
+    padding: 16px;
+    border-radius: 14px;
+  }
+
+  .cards strong {
+    font-size: 22px;
+  }
+
+  .chart {
+    height: 220px;
+    margin-top: 22px;
+    border-radius: 18px;
+  }
+
+  .chart::before {
+    inset: 30px 18px;
+  }
+
+  .chartBars {
+    inset: 54px 18px 42px;
+    gap: 10px;
+  }
+
+  .chartBars span::before,
+  .chartBars span::after {
+    font-size: 11px;
+  }
+
   .resources,
   .contact {
-    padding-left: 22px;
-    padding-right: 22px;
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .resources {
+    padding-bottom: 66px;
+  }
+
+  .resources h2,
+  .contactIntro h2 {
+    font-size: 30px;
+    letter-spacing: 0;
+  }
+
+  .resourceGrid {
+    gap: 16px;
+  }
+
+  .resourceGrid div,
+  .contactGrid a {
+    padding: 22px;
+    border-radius: 18px;
+  }
+
+  .contact {
+    margin-bottom: 108px;
+  }
+
+  .contactIntro p,
+  .resources>p {
+    font-size: 16px;
+  }
+
+  .contactGrid {
+    gap: 16px;
+  }
+
+  .whatsappWidget {
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
   }
 
   .whatsappWidget a {
+    width: 100%;
+    justify-content: center;
+    padding: 13px 14px;
     font-size: 13px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 420px) {
+  .header {
+    padding: 10px 12px;
+  }
+
+  .logoImage {
+    height: 44px;
+    max-width: 124px;
+  }
+
+  nav button {
+    max-width: 134px;
+    padding: 10px 12px;
+    font-size: 11px;
+  }
+
+  .hero {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  h1 {
+    font-size: 31px;
+  }
+
+  .dashboard {
+    border-radius: 16px;
+  }
+
+  .dashHeader strong {
+    font-size: 18px;
+  }
+
+  .chartBars {
+    gap: 7px;
+  }
+
+  .chartBars span::before {
+    display: none;
+  }
+
+  .resources,
+  .contact {
+    padding-left: 14px;
+    padding-right: 14px;
   }
 }
